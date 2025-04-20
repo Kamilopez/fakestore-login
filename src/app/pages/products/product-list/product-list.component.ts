@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CardProductComponent } from "../../../components/card-product/card-product.component";
 import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../interfaces/store.interfaces';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +11,7 @@ import { ProductService } from '../../../services/product.service';
 })
 export default class ProductListComponent {
   productService = inject(ProductService);
-  products = [];
+  products: Product[] = [];
 
   ngOnInit() {
     this.getProducts();
@@ -19,7 +20,7 @@ export default class ProductListComponent {
   getProducts() {
     this.productService.getProducts().subscribe((resp) => {
       this.products = resp;
-      console.log(this.products)
-    })
+      console.log(this.products);
+    });
   }
 }
